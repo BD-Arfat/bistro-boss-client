@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FaShoppingCart, FaUserAlt, FaBars } from "react-icons/fa";
 
 const Navbar = () => {
@@ -11,29 +11,51 @@ const Navbar = () => {
 
   const item = (
     <>
-      <Link to="/" className="hover:text-yellow-500">
+      <NavLink
+        to="/"
+        className={({ isActive }) =>
+          isActive ? "text-yellow-500" : "hover:text-yellow-500"
+        }
+      >
         HOME
-      </Link>
-      <Link to="/contact" className="hover:text-yellow-500">
+      </NavLink>
+      <NavLink
+        to="/contact"
+        className={({ isActive }) =>
+          isActive ? "text-yellow-500" : "hover:text-yellow-500"
+        }
+      >
         CONTACT US
-      </Link>
-      <Link to="/dashboard" className="hover:text-yellow-500">
+      </NavLink>
+      <NavLink
+        to="/dashboard"
+        className={({ isActive }) =>
+          isActive ? "text-yellow-500" : "hover:text-yellow-500"
+        }
+      >
         DASHBOARD
-      </Link>
-      <Link to="/menu" className="hover:text-yellow-500">
+      </NavLink>
+      <NavLink
+        to="/menu"
+        className={({ isActive }) =>
+          isActive ? "text-yellow-500" : "hover:text-yellow-500"
+        }
+      >
         OUR MENU
-      </Link>
-      <Link to="/shop" className="hover:text-yellow-500">
+      </NavLink>
+      <NavLink
+        to="/shop"
+        className={({ isActive }) =>
+          isActive ? "text-yellow-500" : "hover:text-yellow-500"
+        }
+      >
         OUR SHOP
-      </Link>
-      <Link to="/logout" className="hover:text-yellow-500">
-        SIGN OUT
-      </Link>
+      </NavLink>
     </>
   );
 
   return (
-    <nav className="bg-black text-white">
+    <nav className="bg-black fixed z-10 w-full text-white">
       <div className="container mx-auto flex justify-between items-center py-4 px-6">
         {/* Logo Section */}
         <div className="text-lg font-bold">
@@ -55,9 +77,9 @@ const Navbar = () => {
           </div>
 
           {/* Profile Icon */}
-          <Link to="/profile">
+          <NavLink to="/profile">
             <FaUserAlt className="text-xl" />
-          </Link>
+          </NavLink>
         </div>
 
         {/* Mobile Toggle Button */}
