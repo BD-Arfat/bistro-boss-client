@@ -44,18 +44,18 @@ const Navbar = () => {
         OUR MENU
       </NavLink>
       <NavLink
-        to="/shop"
+        to="/order"
         className={({ isActive }) =>
           isActive ? "text-yellow-500" : "hover:text-yellow-500"
         }
       >
-        OUR SHOP
+        OUR PRODUCTS
       </NavLink>
     </>
   );
 
   return (
-    <nav className="bg-black fixed z-10 w-full text-white">
+    <nav className="bg-black fixed z-10 w-full -mt-1 text-white">
       <div className="container mx-auto flex justify-between items-center py-4 px-6">
         {/* Logo Section */}
         <div className="text-lg font-bold">
