@@ -36,7 +36,7 @@ const Navbar = () => {
         DASHBOARD
       </NavLink>
       <NavLink
-        to="/menu"
+        to="/ourMenu"
         className={({ isActive }) =>
           isActive ? "text-yellow-500" : "hover:text-yellow-500"
         }
