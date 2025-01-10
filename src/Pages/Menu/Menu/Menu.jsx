@@ -9,6 +9,7 @@ import image5 from "../../../assets/menu/soup-bg.jpg";
 import useMenu from "../../../hooks/useMenu";
 import SectionTaitle from "../../../Components/SectionTaitle/SectionTaitle";
 import Menu_Category from "../Menu_Category/Menu_Category";
+import { Link } from "react-router-dom";
 
 const Menu = () => {
   const [menu] = useMenu();
@@ -34,6 +35,9 @@ const Menu = () => {
       <div className="md:w-11/12 md:mx-auto mb-16">
         <Menu_Category items={offered}></Menu_Category>
       </div>
+      <Link to={"/order"} className="flex justify-center">
+        <button className="btn bg-black px-20 text-white mb-10">Order</button>
+      </Link>
       {/* dessert */}
       <Cover
         img={image2}
@@ -45,6 +49,9 @@ const Menu = () => {
       <div className="md:w-11/12 md:mx-auto mt-10 mb-16">
         <Menu_Category items={dessert}></Menu_Category>
       </div>
+      <Link to={"/order"} className="flex justify-center">
+        <button className="btn bg-black px-20 text-white mb-10">Order</button>
+      </Link>
       {/* pizza */}
       <Cover
         img={image3}
@@ -56,6 +63,9 @@ const Menu = () => {
       <div className="md:w-11/12 md:mx-auto mt-10">
         <Menu_Category items={pizza}></Menu_Category>
       </div>
+      <Link to={"/order"} className="flex justify-center">
+        <button className="btn bg-black px-20 text-white mb-10">Order</button>
+      </Link>
       {/* pizza */}
       <Cover
         img={image4}
@@ -67,6 +77,9 @@ const Menu = () => {
       <div className="md:w-11/12 md:mx-auto mt-10">
         <Menu_Category items={salad}></Menu_Category>
       </div>
+      <Link to={"/order"} className="flex justify-center">
+        <button className="btn bg-black px-20 text-white mb-10">Order</button>
+      </Link>
       {/* sup */}
       <Cover
         img={image4}
@@ -78,6 +91,9 @@ const Menu = () => {
       <div className="md:w-11/12 md:mx-auto mt-10">
         <Menu_Category items={soup}></Menu_Category>
       </div>
+      <Link to={"/order"} className="flex justify-center">
+        <button className="btn bg-black px-20 text-white mb-10">Order</button>
+      </Link>
     </div>
   );
 };
