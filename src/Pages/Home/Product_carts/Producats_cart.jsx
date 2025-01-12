@@ -7,7 +7,7 @@ import Product from "./Product";
 const Producats_cart = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetch("menu.json")
+    fetch("http://localhost:5000/menus")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);

@@ -1,14 +1,16 @@
 import React from "react";
 import Navbar from "../../Shear/Navbar/Navbar";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../../Shear/Footer/Footer";
 
 const OutLets = () => {
+  const location = useLocation();
+  const noHedarFooter = location.pathname.includes("login");
   return (
     <div>
-      <Navbar></Navbar>
+      {noHedarFooter || <Navbar></Navbar>}
       <Outlet></Outlet>
-      <Footer></Footer>
+      {noHedarFooter || <Footer></Footer>}
     </div>
   );
 };

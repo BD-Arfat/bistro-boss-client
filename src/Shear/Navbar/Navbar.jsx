@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FaShoppingCart, FaUserAlt, FaBars } from "react-icons/fa";
 
 const Navbar = () => {
@@ -75,11 +75,12 @@ const Navbar = () => {
               3
             </span>
           </div>
-
-          {/* Profile Icon */}
-          <NavLink to="/profile">
-            <FaUserAlt className="text-xl" />
-          </NavLink>
+          <Link
+            className="bg-white px-4 text-black py-2 rounded-sm font-bold"
+            to={"/login"}
+          >
+            Login Now
+          </Link>
         </div>
 
         {/* Mobile Toggle Button */}

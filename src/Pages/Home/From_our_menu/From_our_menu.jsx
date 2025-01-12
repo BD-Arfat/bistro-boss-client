@@ -6,7 +6,7 @@ import useMenu from "../../../hooks/useMenu";
 const From_our_menu = () => {
   // const [menu, setMenu] = useState([]);
   // useEffect(() => {
-  //   fetch("menu.json")
+  //   fetch("http://localhost:5000/menus")
   //     .then((res) => res.json())
   //     .then((data) => {
   //       const popularMenuItems = data.filter(
