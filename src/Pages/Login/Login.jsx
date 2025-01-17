@@ -1,29 +1,23 @@
 import React from "react";
-import login from "../../assets/login";
+import login from "../../assets/login_image.png";
 
 const Login = () => {
+  const handleSingIn = (e) =>{
+    e.preventDefault()
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const form = {email, password}
+    console.log(form)
+  }
   return (
     <div>
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
         <div className="bg-white rounded-lg shadow-lg p-8 flex flex-col lg:flex-row w-full max-w-5xl">
           {/* Form Section */}
           <div className="w-full lg:w-1/2 p-6">
-            <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
-            <form>
-              <div className="mb-4">
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  placeholder="Type here"
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-                />
-              </div>
+            <h2 className="text-2xl font-bold mb-4">LOGIN</h2>
+            <form onSubmit={handleSingIn}>
+              
               <div className="mb-4">
                 <label
                   htmlFor="email"
@@ -33,7 +27,7 @@ const Login = () => {
                 </label>
                 <input
                   type="email"
-                  id="email"
+                  name="email"
                   placeholder="Type here"
                   className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
                 />
@@ -47,7 +41,7 @@ const Login = () => {
                 </label>
                 <input
                   type="password"
-                  id="password"
+                  name="password"
                   placeholder="Enter your password"
                   className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
                 />
@@ -60,9 +54,9 @@ const Login = () => {
               </button>
             </form>
             <p className="text-sm text-gray-500 mt-4 text-center">
-              Already registered?{" "}
+            Don't you already have an account?{" "}
               <a href="/login" className="text-yellow-500 hover:underline">
-                Go to log in
+                Go to singUp
               </a>
             </p>
             <div className="text-center mt-6">
