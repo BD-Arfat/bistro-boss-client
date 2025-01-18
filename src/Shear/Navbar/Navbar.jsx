@@ -1,12 +1,42 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { FaShoppingCart, FaUserAlt, FaBars } from "react-icons/fa";
+import { FaShoppingCart, FaBars } from "react-icons/fa";
+import Swal from "sweetalert2"; // SweetAlert2 ইমপোর্ট
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, logOut } = useContext(AuthContext);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleLogOut = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do you really want to log out?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, Log Out",
+      cancelButtonText: "Cancel",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logOut()
+          .then(() => {
+            Swal.fire(
+              "Logged Out",
+              "You have successfully logged out.",
+              "success"
+            );
+          })
+          .catch((error) => {
+            Swal.fire("Error", error.message, "error");
+          });
+      }
+    });
   };
 
   const item = (
@@ -75,12 +105,24 @@ const Navbar = () => {
               3
             </span>
           </div>
-          <Link
-            className="bg-white px-4 text-black py-2 rounded-sm font-bold"
-            to={"/login"}
-          >
-            Login Now
-          </Link>
+
+          {user ? (
+            <>
+              <button
+                onClick={handleLogOut}
+                className="bg-white px-4 text-black py-2 rounded-sm font-bold"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link
+              className="bg-white px-4 text-black py-2 rounded-sm font-bold"
+              to={"/login"}
+            >
+              Login Now
+            </Link>
+          )}
         </div>
 
         {/* Mobile Toggle Button */}

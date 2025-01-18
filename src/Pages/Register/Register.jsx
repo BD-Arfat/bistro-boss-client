@@ -2,37 +2,50 @@ import React, { useContext } from "react";
 import Swal from "sweetalert2"; // Import SweetAlert2
 import registerImage from "../../assets/register.png"; // Replace with your image path
 import { AuthContext } from "../../Provider/AuthProvider";
+import { useForm } from "react-hook-form";
+import { updateProfile } from "firebase/auth";
+
+
+
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
-
-  const handleRegister = (e) => {
-    e.preventDefault();
-    const name = e.target.name.value;
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    const imageUrl = e.target.url.value;
-    const form = { name, email, password, imageUrl };
-
-    createUser(email, password)
-      .then((res) => {
-        // Show SweetAlert on successful registration
-        Swal.fire({
-          icon: "success",
-          title: "Registration Successful",
-          text: "You have been successfully registered!",
+  const { createUser, } = useContext(AuthContext);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm()
+  const onSubmit = (data) => {
+    createUser(data.email, data.password) // নতুন ব্যবহারকারী তৈরি করা
+      .then((result) => {
+        const user = result.user; // নতুন ব্যবহারকারীর তথ্য
+        // প্রোফাইল আপডেট
+        return updateProfile(user, {
+          displayName: data.name, // নাম যোগ করা
+          photoURL: data.url, // প্রোফাইল ছবি যোগ করা
         });
-        e.target.reset(); // Reset the form
       })
-      .catch((err) => {
-        // Show SweetAlert on error
+      .then(() => {
         Swal.fire({
+          title: "Success!",
+          text: "Your account has been created with name and photo.",
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "Error!",
+          text: error.message || "Something went wrong.",
           icon: "error",
-          title: "Registration Failed",
-          text: err.message || "Something went wrong!",
+          confirmButtonText: "OK",
         });
       });
   };
+
+
+
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -40,7 +53,7 @@ const Register = () => {
         {/* Form Section */}
         <div className="w-full lg:w-1/2 p-8">
           <h2 className="text-3xl font-bold text-center mb-6">Sign Up</h2>
-          <form onSubmit={handleRegister}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-4">
               <label
                 htmlFor="name"
@@ -51,10 +64,12 @@ const Register = () => {
               <input
                 type="text"
                 name="name"
-                required
+                {...register("name", { required: true })}
+
                 placeholder="Type here"
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
               />
+              {errors.name && <span className="text-red-500">Pls Enter Your Name</span>}
             </div>
             <div className="mb-4">
               <label
@@ -65,11 +80,13 @@ const Register = () => {
               </label>
               <input
                 type="email"
-                required
+
                 name="email"
+                {...register("email", { required: true })}
                 placeholder="Type here"
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
               />
+              {errors.email && <span className="text-red-500">Pls Enter Your Email</span>}
             </div>
             <div className="mb-4">
               <label
@@ -80,11 +97,15 @@ const Register = () => {
               </label>
               <input
                 type="password"
-                required
+
                 name="password"
+                {...register("password", { required: true, minLength: 6, maxLength: 20 })}
                 placeholder="Enter your password"
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
               />
+              {errors.password?.type === 'required' && <span className="text-red-500">Pls Enter Your Password</span>}
+              {errors.password?.type === "maxLength" && <span className="text-red-500">You can enter a maximum of 20 characters.</span>}
+              {errors.password?.type === "minLength" && <span className="text-red-500">You can enter a minimum of 6 characters.</span>}
             </div>
             <div className="mb-4">
               <label
@@ -95,11 +116,13 @@ const Register = () => {
               </label>
               <input
                 type="url"
-                required
+
                 name="url"
+                {...register("url", { required: true })}
                 placeholder="Enter your Photo"
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
               />
+              {errors.url && <span className="text-red-500">Pls Enter Your Image Url</span>}
             </div>
             <button
               type="submit"

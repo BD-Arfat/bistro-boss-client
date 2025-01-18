@@ -6,6 +6,8 @@ import Menu from "../Pages/Menu/Menu/Menu";
 import Orders from "../Pages/Order/Orders";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import Secret from "../Shear/Secret/Secret";
+import PrivetRouts from "./PrivetRouts";
 
 const Router = createBrowserRouter([
   {
@@ -32,6 +34,10 @@ const Router = createBrowserRouter([
         path: "/singUp",
         element: <Register></Register>,
       },
+      {
+        path : '/secret',
+        element : <PrivetRouts><Secret></Secret></PrivetRouts>
+      }
     ],
   },
 ]);

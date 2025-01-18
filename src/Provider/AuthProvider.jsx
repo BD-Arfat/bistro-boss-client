@@ -4,7 +4,7 @@ import auth from '../firebase/firebase.config';
 export const AuthContext = createContext(null)
 const AuthProvider = ({ children }) => {
 
-    const [users, setUser] = useState(null);
+    const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true)
 
     const createUser = (email, password) =>{
@@ -32,7 +32,7 @@ const AuthProvider = ({ children }) => {
     },[])
 
     const authInfo = {
-        users, loading,createUser,singInUser,logOut
+        user, loading,createUser,singInUser,logOut
     }
 
     return (

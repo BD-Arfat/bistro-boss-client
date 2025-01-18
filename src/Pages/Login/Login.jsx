@@ -3,11 +3,16 @@ import login from "../../assets/login_image.png";
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from "react-simple-captcha";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const captchaRef = useRef(null);
   const [disabled, setDisabled] = useState(true);
   const {singInUser} = useContext(AuthContext)
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || '/'
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -26,6 +31,7 @@ const Login = () => {
           icon: "success",
           confirmButtonText: "OK",
         });
+        navigate(from, {replace:true})
       })
       .catch((err) => {
         Swal.fire({
@@ -54,6 +60,8 @@ const Login = () => {
         <div className="bg-white rounded-lg shadow-lg p-8 flex flex-col lg:flex-row w-full max-w-5xl">
           {/* Form Section */}
           <div className="w-full lg:w-1/2 p-6">
+          <Link to={'/'}>
+          <h1 className="mb-3 text-yellow-500 font-bold underline">GO HOME PAGE</h1></Link>
             <h2 className="text-2xl font-bold mb-4">LOGIN</h2>
             <form onSubmit={handleSignIn}>
               <div className="mb-4">
@@ -112,9 +120,9 @@ const Login = () => {
             </form>
             <p className="text-sm text-gray-500 mt-4 text-center">
               Don't you already have an account?{" "}
-              <a href="/login" className="text-yellow-500 hover:underline">
+              <Link to="/singUp" className="text-yellow-500 hover:underline">
                 Go to Sign Up
-              </a>
+              </Link>
             </p>
             <div className="text-center mt-6">
               <p className="text-sm text-gray-500">Or sign up with</p>

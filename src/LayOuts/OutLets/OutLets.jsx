@@ -5,7 +5,7 @@ import Footer from "../../Shear/Footer/Footer";
 
 const OutLets = () => {
   const location = useLocation();
-  const noHedarFooter = location.pathname.includes("login");
+  const noHedarFooter = location.pathname.includes("login") || location.pathname.includes('singUp');
   return (
     <div>
       {noHedarFooter || <Navbar></Navbar>}
