@@ -10,6 +10,7 @@ import Secret from "../Shear/Secret/Secret";
 import PrivetRouts from "./PrivetRouts";
 import Dashboard from "../LayOuts/Dashboard/Dashboard";
 import Carts from "../Pages/Dashboard/Carts/Carts";
+import Profile from "../Pages/Dashboard/Profile/Profile";
 
 const Router = createBrowserRouter([
   {
@@ -44,11 +45,15 @@ const Router = createBrowserRouter([
   },
   {
     path : 'dashboard',
-    element : <Dashboard></Dashboard>,
+    element : <PrivetRouts><Dashboard></Dashboard></PrivetRouts>,
     children : [
       {
         path : 'carts',
         element : <Carts></Carts>
+      },
+      {
+        path : 'profile',
+        element : <Profile></Profile>
       }
     ]
   }
