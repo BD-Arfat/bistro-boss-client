@@ -8,6 +8,8 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import Secret from "../Shear/Secret/Secret";
 import PrivetRouts from "./PrivetRouts";
+import Dashboard from "../LayOuts/Dashboard/Dashboard";
+import Carts from "../Pages/Dashboard/Carts/Carts";
 
 const Router = createBrowserRouter([
   {
@@ -40,6 +42,16 @@ const Router = createBrowserRouter([
       }
     ],
   },
+  {
+    path : 'dashboard',
+    element : <Dashboard></Dashboard>,
+    children : [
+      {
+        path : 'carts',
+        element : <Carts></Carts>
+      }
+    ]
+  }
 ]);
 
 export default Router;

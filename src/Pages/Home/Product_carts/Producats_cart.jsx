@@ -18,7 +18,7 @@ const Producats_cart = () => {
         title={"---Should Try---"}
         heading={"CHEF RECOMMENDS"}
       ></SectionTaitle>
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-5 mb-20">
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-5 mb-20 md:w-11/12 md:mx-auto">
         {filterProduct.map((product) => (
           <Product key={product._id} product={product}></Product>
         ))}

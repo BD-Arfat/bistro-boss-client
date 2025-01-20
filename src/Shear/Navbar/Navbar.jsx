@@ -3,10 +3,12 @@ import { Link, NavLink } from "react-router-dom";
 import { FaShoppingCart, FaBars } from "react-icons/fa";
 import Swal from "sweetalert2"; // SweetAlert2 ইমপোর্ট
 import { AuthContext } from "../../Provider/AuthProvider";
+import useCarts from "../../hooks/useCarts";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logOut } = useContext(AuthContext);
+  const [cart] = useCarts()
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -100,10 +102,12 @@ const Navbar = () => {
         <div className="flex items-center space-x-4">
           {/* Cart Icon */}
           <div className="relative">
+            <Link to={'dashboard/carts'}>
             <FaShoppingCart className="text-xl" />
             <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full px-1">
-              3
+              {cart.length}
             </span>
+            </Link>
           </div>
 
           {user ? (
